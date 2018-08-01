@@ -8,7 +8,7 @@
         <artifactId>jenkins-parent-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>site-jenkins-shared-library</artifactId>
+    <artifactId>jenkins-shared-library</artifactId>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
