@@ -8,6 +8,23 @@
     <artifactId>site-jenkins-shared-library</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <java.language.version>8</java.language.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--https://github.com/groovy/GMavenPlus/wiki/Examples#joint-compilation-->
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <!-- any version of Groovy \>= 1.8.2 should work here -->
+            <version>2.5.0</version>
+            <type>pom</type>
+        </dependency>
+    </dependencies>
+
     <build>
         <sourceDirectory>src</sourceDirectory>
         <resources>
@@ -15,5 +32,46 @@
                 <directory>vars</directory>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.6.1</version>
+                <configuration>
+                    <sources>
+                        <source>
+                            <directory>${project.basedir}/src/</directory>
+                            <includes>
+                                <include>**/*.groovy</include>
+                            </includes>
+                        </source>
+                    </sources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>addSources</goal>
+                            <goal>addTestSources</goal>
+                            <goal>generateStubs</goal>
+                            <goal>compile</goal>
+                            <goal>generateTestStubs</goal>
+                            <goal>compileTests</goal>
+                            <goal>removeStubs</goal>
+                            <goal>removeTestStubs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.language.version}</source>
+                    <target>${java.language.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
 </project>
