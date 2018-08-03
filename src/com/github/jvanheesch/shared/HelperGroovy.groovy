@@ -1,6 +1,8 @@
 package com.github.jvanheesch.shared
 
 class HelperGroovy {
+    public static final String artifactId = "site-parent-pom"
+
     static def checkoutFromGithub(script, repo, branch) {
         script.git branch: "${branch}", url: "git@github.com:jvanheesch/${repo}.git"
     }
