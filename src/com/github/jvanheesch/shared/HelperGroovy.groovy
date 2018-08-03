@@ -5,13 +5,8 @@ class HelperGroovy {
         script.git branch: "${branch}", url: "git@github.com:jvanheesch/${repo}.git"
     }
 
-    static def checkoutFromGithubWithTag(script, repo, branch, tag) {
-        script.echo "branch"
-        script.echo "${branch}"
-        script.echo "tag"
+    static def checkoutFromGithubWithTag(script, repo, tag) {
         script.echo "${tag}"
-        script.echo "both"
-        script.echo "${branch}:${tag}"
-        script.git branch: "${branch}:${tag}", url: "git@github.com:jvanheesch/${repo}.git"
+        script.git branch: "refs/tags/${tag}", url: "git@github.com:jvanheesch/${repo}.git"
     }
 }
