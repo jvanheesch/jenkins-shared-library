@@ -10,6 +10,8 @@ class HelperGroovy {
         script.echo "${branch}"
         script.echo "tag"
         script.echo "${tag}"
+        script.echo "both"
+        script.echo "${branch}:${tag}"
         script.git branch: "${branch}:${tag}", url: "git@github.com:jvanheesch/${repo}.git"
     }
 }
